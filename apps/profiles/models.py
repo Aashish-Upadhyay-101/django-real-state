@@ -9,6 +9,7 @@ from apps.common.models import TimeStampedUUIDModel
 
 User = get_user_model()
 
+
 class Gender(models.TextChoices):
     MALE = "Male", _("Male")
     FEMALE = "Female", _("Female")

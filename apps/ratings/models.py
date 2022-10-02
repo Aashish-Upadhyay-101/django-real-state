@@ -1,4 +1,3 @@
-from random import choices
 from django.db import models
 from django.utils.translation import gettext_lazy as _ 
 from real_estate.settings.base import AUTH_USER_MODEL

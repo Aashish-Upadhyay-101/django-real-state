@@ -20,11 +20,22 @@ class UserSerializer(serializers.Serializer):
     top_agent = serializers.BooleanField(source="profile.top_agent")
 
     class Meta:
-        model = User 
-        fields = ["id", "username", "email", "first_name", "last_name", "full_name", "gender",
-                 "profile_picture", "country", "city", "phone_number", "top_agent"]
+        model = User
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "full_name",
+            "gender",
+            "profile_picture",
+            "country",
+            "city",
+            "phone_number",
+            "top_agent",
+        ]
 
-    
     def get_first_name(self, obj):
         return obj.first_name.title()
 
@@ -34,17 +45,16 @@ class UserSerializer(serializers.Serializer):
     def to_representation(self, instance):
         representation = super(UserCreateSerializer, self).to_representation(instance)
         if instance.is_superuser:
-            representation["admin"] = True 
-        
+            representation["admin"] = True
+
         return representation
 
 
 class CreateUserSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
-        model = User 
+        model = User
         fields = ["id", "username", "email", "first_name", "last_name", "password"]
 
 
-
 class UserDeleteSerializer(serializers.Serializer):
-    pass 
+    pass

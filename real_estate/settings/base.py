@@ -17,7 +17,7 @@ from pathlib import Path
 env = environ.Env(DEBUG=(bool, False))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 environ.Env.read_env(BASE_DIR / ".env")
 
 
@@ -60,6 +60,8 @@ LOCAL_APPS = [
     "apps.profiles",
     "apps.ratings",
     "apps.users",
+    "apps.properties",
+    "apps.enquiries",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -141,7 +143,6 @@ MEDIA_URL = "mediafiles/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -152,7 +153,7 @@ AUTH_USER_MODEL = "users.User"
 # rest_framework config
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
@@ -165,7 +166,6 @@ SIMPLE_JWT = {
     ),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-
     "SIGNING_KEY": env("SIGNING_KEY"),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
@@ -201,44 +201,39 @@ logger = logging.getLogger(__name__)
 
 LOG_LEVEL = "INFO"
 
-logging.config.dictConfig({
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "console": {
-            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "console": {
+                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+            },
+            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+            "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
         },
-        "file": {
-            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+        "handlers": {
+            "console": {"class": "logging.StreamHandler", "formatter": "console"},
+            "file": {
+                "level": "INFO",
+                "class": "logging.FileHandler",
+                "formatter": "file",
+                "filename": "logs/real_estate.log",
+            },
+            "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
         },
-        "django.server": DEFAULT_LOGGING["formatters"]["django.server"]
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "console"
+        "loggers": {
+            "": {
+                "level": "INFO",
+                "handlers": ["console", "file"],
+                "propagate": False,
+            },
+            "apps": {
+                "level": "INFO",
+                "handlers": ["console"],
+                "propagate": False,
+            },
+            "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
         },
-        'file': {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "formatter": "file",
-            "filename": "logs/real_estate.log",
-        },
-        "django.server": DEFAULT_LOGGING["handlers"]["django.server"]
-    },
-
-    "loggers": {
-        "": {
-            "level": "INFO",
-            "handlers": ["console", "file"],
-            "propagate": False,
-        },
-        "apps": {
-            "level": "INFO",
-            "handlers": ["console"],
-            "propagate": False,
-        },
-        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
     }
-})
-
+)

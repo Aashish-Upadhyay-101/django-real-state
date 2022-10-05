@@ -12,16 +12,32 @@ class ProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
     full_name = serializers.SerializerMethodField(read_only=True)
-    country = CountryField(name_only=True) 
+    country = CountryField(name_only=True)
     reviews = serializers.SerializerMethodField(read_only=True)
 
-
     class Meta:
-        model = Profile 
-        fields = [ "username", "first_name", "last_name", "full_name", "email", 
-                "id", "phone_number", "profile_picture", "about_me", "real_estate_license", 
-                "gender", "country", "city", "is_buyer", "is_seller", "is_agent", 
-                "rating", "num_of_reviews", "reviews",]
+        model = Profile
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "full_name",
+            "email",
+            "id",
+            "phone_number",
+            "profile_picture",
+            "about_me",
+            "real_estate_license",
+            "gender",
+            "country",
+            "city",
+            "is_buyer",
+            "is_seller",
+            "is_agent",
+            "rating",
+            "num_of_reviews",
+            "reviews",
+        ]
 
     # it this not work then will do it later
     def get_full_name(self, obj):
@@ -42,12 +58,21 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     country = CountryField(name_only=True)
- 
+
     class Meta:
         model = Profile
-        fields = ["phone_number", "profile_picture", "about_me", "real_estate_license", "gender",
-                 "country", "city", "is_buyer", "is_seller", "is_agent"]
-
+        fields = [
+            "phone_number",
+            "profile_picture",
+            "about_me",
+            "real_estate_license",
+            "gender",
+            "country",
+            "city",
+            "is_buyer",
+            "is_seller",
+            "is_agent",
+        ]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -55,4 +80,3 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             representation["top_agent"] = True
 
         return representation
-

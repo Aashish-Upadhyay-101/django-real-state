@@ -1,5 +1,3 @@
-from functools import partial
-from gettext import install
 from rest_framework.response import Response
 from rest_framework import generics, status, permissions
 from rest_framework.views import APIView
@@ -18,7 +16,7 @@ class AgentListAPIView(generics.ListAPIView):
 
 class TopAgentListAPIView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Profile.objects.filter(top_agent=True)
+    queryset = Profile.objects.filter(top_agent=True) 
     serializer_class = ProfileSerializer
 
 

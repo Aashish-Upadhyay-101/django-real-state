@@ -12,8 +12,8 @@ class ProfileFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory("tests.factories.UserFactory")
     phone_number = factory.LazyAttribute(lambda x: faker.phone_number())
     about_me = factory.LazyAttribute(lambda x: faker.sentence(nb_words=5))
-    license = factory.LazyAttribute(lambda x: faker.text(max_nb_chars=6))
-    profile_photo = factory.LazyAttribute(
+    real_estate_license = factory.LazyAttribute(lambda x: faker.text(max_nb_chars=6))
+    profile_picture = factory.LazyAttribute(
         lambda x: faker.file_extension(category="image")
     )
     gender = factory.LazyAttribute(lambda x: f"other")
@@ -24,7 +24,7 @@ class ProfileFactory(factory.django.DjangoModelFactory):
     is_agent = False
     top_agent = False
     rating = factory.LazyAttribute(lambda x: faker.random_int(min=1, max=5))
-    num_reviews = factory.LazyAttribute(lambda x: faker.random_int(min=0, max=25))
+    num_of_reviews = factory.LazyAttribute(lambda x: faker.random_int(min=0, max=25))
 
     class Meta:
         model = Profile
@@ -35,7 +35,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     first_name = factory.LazyAttribute(lambda x: faker.first_name())
     last_name = factory.LazyAttribute(lambda x: faker.last_name())
     username = factory.LazyAttribute(lambda x: faker.first_name())
-    email = factory.LazyAttribute(lambda x: f"alpha@realestate.com")
+    email = factory.LazyAttribute(lambda x: f"hbeing427@gmail.com")
     password = factory.LazyAttribute(lambda x: faker.password())
     is_active = True
     is_staff = False

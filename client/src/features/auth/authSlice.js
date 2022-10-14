@@ -12,16 +12,19 @@ const initialState = {
   message: "",
 };
 
-const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
-  try {
-    return await authService.register(user);
-  } catch (error) {
-    const message = errorMessage(error);
-    return thunkAPI.rejectWithValue(message);
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    try {
+      return await authService.register(user);
+    } catch (error) {
+      const message = errorMessage(error);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
     return await authService.login(user);
   } catch (error) {
@@ -30,18 +33,21 @@ const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
-const logout = createAsyncThunk("auth/logout", async () => {
+export const logout = createAsyncThunk("auth/logout", async () => {
   authService.logout();
 });
 
-const activate = createAsyncThunk("auth/activate", async (user, thunkAPI) => {
-  try {
-    return await authService.activate(user);
-  } catch (error) {
-    const message = errorMessage(error);
-    return thunkAPI.rejectWithValue(message);
+export const activate = createAsyncThunk(
+  "auth/activate",
+  async (user, thunkAPI) => {
+    try {
+      return await authService.activate(user);
+    } catch (error) {
+      const message = errorMessage(error);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 // auth slice
 const authSlice = createSlice({

@@ -1,3 +1,5 @@
-### This Project is to Learn Docker, Django and rest framework, testings and Core stuffs
+### This Project is to learn Docker, Django and django rest framework, testings, celery, flower, redis, etc.
 
-### Front-end part is quite incomplete due to this cause.
+### The frontend part is not fully ready, (few pages and components are only added) because its not frontend based project and focuses more on backend side.
+
+## To try things, please feel free to clone this repo and run locally.

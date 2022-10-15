@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { errorMessage } from "../../helpers/errorMessage";
 import propertyAPIService from "./propertyAPIService";
 
-const initialSlice = {
+const initialState = {
   properties: [],
   property: {},
   isError: false,

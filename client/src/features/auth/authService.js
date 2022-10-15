@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const REGISTER_URL = "api/v1/auth/users/";
-const LOGIN_URL = "api/v1/auth/jwt/create/";
-const ACTIVATE_URL = "api/v1/auth/users/activation/";
+const REGISTER_URL = "http://127.0.0.1:8000/api/v1/auth/users/";
+const LOGIN_URL = "http://127.0.0.1:8000/api/v1/auth/jwt/create/";
+const ACTIVATE_URL = "http://127.0.0.1:8000/api/v1/auth/users/activation/";
 
 const register = async (userData) => {
   const config = {

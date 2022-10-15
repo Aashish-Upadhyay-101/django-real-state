@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Dropdown, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { GiHouse } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar fixed="top" bg="dark" varient="dark" expand="lg" wordCollection>
+      <Navbar fixed="top" bg="light" varient="dark" expand="lg" wordCollection>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
@@ -42,7 +42,7 @@ const Header = () => {
               </LinkContainer>
               {user ? (
                 <NavDropdown
-                  title={user.firstName ? user.firstName : "Welcome"}
+                  title={user.first_name ? user.first_name : "Welcome"}
                 >
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>

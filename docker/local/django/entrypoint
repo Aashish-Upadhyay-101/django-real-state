@@ -31,3 +31,8 @@ done
 >&2 echo "PostgreSQL is ready!!!!...:-)"
 
 exec "$@"
+
+
+
+
+

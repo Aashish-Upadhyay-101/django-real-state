@@ -54,6 +54,7 @@ THIRD_PARTY_APPS = [
     "djoser",
     "rest_framework_simplejwt",
     "corsheaders",
+    "djcelery_email",
 ]
 
 LOCAL_APPS = [
